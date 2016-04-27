@@ -1,12 +1,12 @@
 {
-    "name": "draperstudio/larave-castable",
+    "name": "draperstudio/eloquent-castable",
     "type": "library",
     "description": "More extensible Attribute Casting for Eloquent",
     "keywords": [
         "draperstudio",
-        "larave-castable"
+        "eloquent-castable"
     ],
-    "homepage": "https://github.com/draperstudio/larave-castable",
+    "homepage": "https://github.com/draperstudio/eloquent-castable",
     "license": "MIT",
     "authors": [{
         "name": "DraperStudio",
