@@ -11,8 +11,8 @@
 
 namespace DraperStudio\Castable\Traits;
 
-use DraperStudio\Castable\Exceptions\CasterNotSpecified;
 use DraperStudio\Castable\Exceptions\CasterNotInitializable;
+use DraperStudio\Castable\Exceptions\CasterNotSpecified;
 
 /**
  * This is the Castable trait.
