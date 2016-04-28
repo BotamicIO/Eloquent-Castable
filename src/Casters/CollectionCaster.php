@@ -11,7 +11,6 @@
 
 namespace DraperStudio\Castable\Casters;
 
-use DraperStudio\Castable\Contracts\Caster;
 use Illuminate\Support\Collection;
 
 /**

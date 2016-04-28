@@ -11,8 +11,6 @@
 
 namespace DraperStudio\Castable\Casters;
 
-use DraperStudio\Castable\Contracts\Caster;
-
 /**
  * This is the ArrayCaster class.
  *

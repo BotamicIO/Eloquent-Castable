@@ -78,7 +78,7 @@ trait Castable
         $optionsMethodName = 'get'.$function->getShortName().'Config';
 
         $options = [];
-        if(method_exists($this, $optionsMethodName)) {
+        if (method_exists($this, $optionsMethodName)) {
             $options = $this->{$optionsMethodName}();
         }
 

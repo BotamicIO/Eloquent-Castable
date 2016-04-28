@@ -12,7 +12,6 @@
 namespace DraperStudio\Castable\Casters;
 
 use Carbon\Carbon;
-use DraperStudio\Castable\Contracts\Caster;
 
 /**
  * This is the DateTimeCaster class.
