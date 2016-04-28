@@ -72,6 +72,17 @@ trait Castable
             throw new CasterNotInitializable($casterClass);
         }
 
-        return call_user_func_array([new $casterClass(), 'cast'], [$value]);
+        // check if we have options for our caster class
+        $function = new \ReflectionClass($casterClass);
+
+        $optionsMethodName = 'get'.$function->getShortName().'Config';
+
+        $options = [];
+        if(method_exists($this, $optionsMethodName)) {
+            $options = $this->{$optionsMethodName}();
+        }
+
+        // build the caster and call the cast method
+        return call_user_func_array([new $casterClass($options), 'cast'], [$value]);
     }
 }

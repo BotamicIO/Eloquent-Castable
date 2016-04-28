@@ -18,7 +18,7 @@ use DraperStudio\Castable\Contracts\Caster;
  *
  * @author DraperStudio <hello@draperstudio.tech>
  */
-class FloatCaster implements Caster
+class FloatCaster extends AbstractCaster
 {
     public function cast($value)
     {

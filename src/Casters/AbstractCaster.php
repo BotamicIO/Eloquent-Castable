@@ -11,17 +11,17 @@
 
 namespace DraperStudio\Castable\Casters;
 
-use DraperStudio\Castable\Contracts\Caster;
-
 /**
- * This is the BooleanCaster class.
+ * This is the AbstractCaster class.
  *
  * @author DraperStudio <hello@draperstudio.tech>
  */
-class BooleanCaster extends AbstractCaster
+abstract class AbstractCaster
 {
-    public function cast($value)
+    public function __construct($options = [])
     {
-        return (bool) $value;
+        $this->options = $options;
     }
+
+    abstract public function cast($value);
 }

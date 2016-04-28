@@ -18,7 +18,7 @@ use DraperStudio\Castable\Contracts\Caster;
  *
  * @author DraperStudio <hello@draperstudio.tech>
  */
-class TimestampCaster implements Caster
+class TimestampCaster extends AbstractCaster
 {
     public function cast($value)
     {

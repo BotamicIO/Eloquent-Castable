@@ -19,7 +19,7 @@ use Illuminate\Support\Collection;
  *
  * @author DraperStudio <hello@draperstudio.tech>
  */
-class CollectionCaster implements Caster
+class CollectionCaster extends AbstractCaster
 {
     public function cast($value)
     {
