@@ -4,8 +4,19 @@ namespace BrianFaust\Castable\Casters;
 
 class TimestampCaster extends AbstractCaster
 {
-    public function cast($value)
+    /**
+     * {@inheritdoc}
+     */
+    public function save($value)
     {
-        return (new DateTimeCaster())->cast($value)->getTimestamp();
+        return $value;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function load($value)
+    {
+        return (new DateTimeCaster($this->options))->save($value)->getTimestamp();
     }
 }

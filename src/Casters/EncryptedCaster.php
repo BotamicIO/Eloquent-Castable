@@ -2,14 +2,14 @@
 
 namespace BrianFaust\Castable\Casters;
 
-class FloatCaster extends AbstractCaster
+class EncryptedCaster extends AbstractCaster
 {
     /**
      * {@inheritdoc}
      */
     public function save($value)
     {
-        return $value;
+        return encrypt($value);
     }
 
     /**
@@ -17,6 +17,6 @@ class FloatCaster extends AbstractCaster
      */
     public function load($value)
     {
-        return (float) $value;
+        return decrypt($value);
     }
 }

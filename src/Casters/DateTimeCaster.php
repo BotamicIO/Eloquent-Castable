@@ -6,7 +6,10 @@ use Carbon\Carbon;
 
 class DateTimeCaster extends AbstractCaster
 {
-    public function cast($value)
+    /**
+     * {@inheritdoc}
+     */
+    public function save($value)
     {
         // If this value is already a Carbon instance, we shall just return it as is.
         // This prevents us having to re-instantiate a Carbon instance when we know
@@ -15,11 +18,13 @@ class DateTimeCaster extends AbstractCaster
             return $value;
         }
 
-        // If the value is already a DateTime instance, we will just skip the rest of
-        // these checks since they will be a waste of time, and hinder performance
-        // when checking the field. We will just return the DateTime right away.
+         // If the value is already a DateTime instance, we will just skip the rest of
+         // these checks since they will be a waste of time, and hinder performance
+         // when checking the field. We will just return the DateTime right away.
         if ($value instanceof DateTimeInterface) {
-            return new Carbon($value->format('Y-m-d H:i:s.u'), $value->getTimeZone());
+            return new Carbon(
+                $value->format('Y-m-d H:i:s.u'), $value->getTimeZone()
+            );
         }
 
         // If this value is an integer, we will assume it is a UNIX timestamp's value
@@ -39,6 +44,14 @@ class DateTimeCaster extends AbstractCaster
         // Finally, we will just assume this date is in the format used by default on
         // the database connection and use that format to create the Carbon object
         // that is returned back out to the developers after we convert it here.
-        return Carbon::createFromFormat($this->getDateFormat(), $value);
+        return Carbon::createFromFormat($this->model->getDateFormat(), $value);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function load($value)
+    {
+        return $this->save($value)->format($this->model->getDateFormat());
     }
 }
