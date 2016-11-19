@@ -15,7 +15,7 @@ $ composer require faustbrian/eloquent-castable
 
 class Product extends Eloquent
 {
-    use BrianFaust\Castable\Traits\Castable;
+    use \BrianFaust\Castable\Castable;
 
     protected $casts = [
         'price' => 'money'
