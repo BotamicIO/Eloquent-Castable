@@ -58,25 +58,8 @@ trait Castable
             return $this->{$method}($value);
         }
 
-        // If an attribute is listed as a "date", we'll convert it from a DateTime
-        // instance into a form proper for storage on the database tables using
-        // the connection grammar's date format. We will auto set the values.
-        if ($value && (in_array($key, $this->getDates()) || $this->isDateCastable($key))) {
-            $value = $this->fromDateTime($value);
-        }
-
-        // @TODO: GET RID OF THOSE PESKY HARDCODED IF CALLS ...
-        if ($this->isEncryptCastable($key) && !is_null($value)) {
-            $value = $this->asEncrypted($value);
-        }
-
-        if ($this->isBase64Castable($key) && !is_null($value)) {
-            $value = $this->asBase64($value);
-        }
-
-        if ($this->isJsonCastable($key) && !is_null($value)) {
-            $value = $this->asJson($value);
-        }
+        // Check if any caster are applicable
+        $value = $this->applyCaster($key, $value);
 
         // If this attribute contains a JSON ->, we'll set the proper value in the
         // attribute's underlying array. This takes care of properly nesting an
@@ -93,9 +76,11 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    public function loadDateTime($value)
+    public function fromDateTime($value)
     {
-        return $this->getCaster(null, 'datetime')->load($value);
+        return $this->getCaster(null, 'datetime', [
+            'format' => $this->getDateFormat(),
+        ])->load($value);
     }
 
     /**
@@ -103,7 +88,9 @@ trait Castable
      */
     protected function asDateTime($value)
     {
-        return $this->getCaster(null, 'datetime')->save($value);
+        return $this->getCaster(null, 'datetime', [
+            'format' => $this->getDateFormat(),
+        ])->save($value);
     }
 
     /**
@@ -111,7 +98,9 @@ trait Castable
      */
     protected function asTimeStamp($value)
     {
-        return $this->getCaster(null, 'timestamp')->save($value);
+        return $this->getCaster(null, 'timestamp', [
+            'format' => $this->getDateFormat(),
+        ])->save($value);
     }
 
     /**
@@ -171,7 +160,7 @@ trait Castable
      *
      * @param string      $key
      * @param string|null $castType
-     * @param array $options
+     * @param array       $options
      *
      * @return \BrianFaust\Castable\Casters\AbstractCaster
      */
@@ -187,8 +176,10 @@ trait Castable
             throw new InvalidArgumentException($castType);
         }
 
+        $casterClass = $casters[$castType];
+
         if (!$options) {
-            $options = $this->getCasterOptions($casterClass = $casters[$castType]);
+            $options = $this->getCasterOptions($casterClass);
         }
 
         return new $casterClass($this, $options);
@@ -210,5 +201,65 @@ trait Castable
         }
 
         return $options;
+    }
+
+    /**
+     * @return mixed
+     */
+    private function applyCaster($key, $value)
+    {
+        if (is_null($value)) {
+            return $value;
+        }
+
+        if ($this->hasCast($key, ['int', 'integer'])) {
+            return $this->getCaster(null, 'int')->save($value);
+        }
+
+        if ($this->hasCast($key, ['real', 'float', 'double'])) {
+            return $this->getCaster(null, 'real')->save($value);
+        }
+
+        if ($this->hasCast($key, ['string'])) {
+            return $this->getCaster(null, 'string')->save($value);
+        }
+
+        if ($this->hasCast($key, ['bool', 'boolean'])) {
+            return $this->getCaster(null, 'bool')->save($value);
+        }
+
+        if ($this->hasCast($key, ['object'])) {
+            return $this->getCaster(null, 'object')->save($value);
+        }
+
+        if ($this->hasCast($key, ['array', 'json'])) {
+            return $this->getCaster(null, 'array')->save($value);
+        }
+
+        if ($this->hasCast($key, ['collection'])) {
+            return $this->getCaster(null, 'collection')->save($value);
+        }
+
+        if ($this->hasCast($key, ['date', 'datetime']) && in_array($key, $this->getDates())) {
+            return $this->getCaster(null, 'date', [
+                'format' => $this->getDateFormat(),
+            ])->save($value);
+        }
+
+        if ($this->hasCast($key, ['timestamp'])) {
+            return $this->getCaster(null, 'timestamp', [
+                'format' => $this->getDateFormat(),
+            ])->save($value);
+        }
+
+        if ($this->hasCast($key, ['encrypted'])) {
+            return $this->getCaster(null, 'encrypted')->save($value);
+        }
+
+        if ($this->hasCast($key, ['base64'])) {
+            return $this->getCaster(null, 'base64')->save($value);
+        }
+
+        return $value;
     }
 }

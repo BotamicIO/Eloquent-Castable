@@ -41,10 +41,12 @@ class DateTimeCaster extends AbstractCaster
             return Carbon::createFromFormat('Y-m-d', $value)->startOfDay();
         }
 
+        dd($this->options['format'], $value);
+
         // Finally, we will just assume this date is in the format used by default on
         // the database connection and use that format to create the Carbon object
         // that is returned back out to the developers after we convert it here.
-        return Carbon::createFromFormat($this->model->getDateFormat(), $value);
+        return Carbon::createFromFormat($this->options['format'], $value);
     }
 
     /**
@@ -52,6 +54,6 @@ class DateTimeCaster extends AbstractCaster
      */
     public function load($value)
     {
-        return $this->save($value)->format($this->model->getDateFormat());
+        return $this->save($value)->format($this->options['format']);
     }
 }
