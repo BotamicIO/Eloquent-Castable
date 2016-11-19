@@ -12,7 +12,7 @@ trait Castable
      *
      * @var array
      */
-    protected static $casters = [
+    protected $casters = [
         'int'        => Casters\IntegerCaster::class,
         'integer'    => Casters\IntegerCaster::class,
         'real'       => Casters\FloatCaster::class,
@@ -95,9 +95,7 @@ trait Castable
      */
     public function loadDateTime($value)
     {
-        return $this->getCaster(null, 'datetime')->options([
-            'format' => $this->getDateFormat(),
-        ])->load($value);
+        return $this->getCaster(null, 'datetime')->load($value);
     }
 
     /**
@@ -105,9 +103,7 @@ trait Castable
      */
     protected function asDateTime($value)
     {
-        return $this->getCaster(null, 'datetime')->options([
-            'format' => $this->getDateFormat(),
-        ])->save($value);
+        return $this->getCaster(null, 'datetime')->save($value);
     }
 
     /**
@@ -115,9 +111,7 @@ trait Castable
      */
     protected function asTimeStamp($value)
     {
-        return $this->getCaster(null, 'timestamp')->options([
-            'format' => $this->getDateFormat(),
-        ])->save($value);
+        return $this->getCaster(null, 'timestamp')->save($value);
     }
 
     /**
@@ -177,12 +171,13 @@ trait Castable
      *
      * @param string      $key
      * @param string|null $castType
+     * @param array $options
      *
      * @return \BrianFaust\Castable\Casters\AbstractCaster
      */
-    private function getCaster($key, $castType = null)
+    private function getCaster($key, $castType = null, $options = [])
     {
-        $casters = array_merge(static::$casters, static::$customCasters);
+        $casters = array_merge($this->casters, $this->customCasters);
 
         if (!$castType) {
             $castType = $this->getCastType($key);
@@ -192,7 +187,9 @@ trait Castable
             throw new InvalidArgumentException($castType);
         }
 
-        $options = $this->getCasterOptions($casterClass = $casters[$castType]);
+        if (!$options) {
+            $options = $this->getCasterOptions($casterClass = $casters[$castType]);
+        }
 
         return new $casterClass($this, $options);
     }
