@@ -17,14 +17,29 @@ class Product extends Eloquent
 {
     use \BrianFaust\Castable\Castable;
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         'price' => 'money'
     ];
 
+    /**
+     * The user defined caster classes.
+     *
+     * @var array
+     */
     protected $customCasters = [
         'money' => \App\Casters\MoneyCaster::class
     ];
 
+    /**
+     * Config for \App\Casters\MoneyCaster
+     *
+     * @return array
+     */
     public function getMoneyCasterConfig()
     {
         return ['currency' => $this->invoice->currency->code];
@@ -35,11 +50,24 @@ class Product extends Eloquent
 ``` php
 <?php
 
+namespace App\Casters;
+
 use BrianFaust\Castable\Casters\AbstractCaster;
 
 class MoneyCaster extends AbstractCaster
 {
-    public function cast($value)
+    /**
+     * {@inheritdoc}
+     */
+    public function save($value)
+    {
+        return $value;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function load($value)
     {
         return new Money((int) $value, new Currency($this->options['currency']));
     }
