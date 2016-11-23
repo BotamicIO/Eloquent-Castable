@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Eloquent Castable.
+ *
+ * (c) Brian Faust <hello@brianfaust.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace BrianFaust\Castable;
 
 use Illuminate\Support\Str;
@@ -148,7 +157,7 @@ trait Castable
      */
     protected function getCastType($key)
     {
-        if (!array_key_exists($key, $this->getCasts())) {
+        if (! array_key_exists($key, $this->getCasts())) {
             return;
         }
 
@@ -168,17 +177,17 @@ trait Castable
     {
         $casters = array_merge($this->casters, $this->customCasters);
 
-        if (!$castType) {
+        if (! $castType) {
             $castType = $this->getCastType($key);
         }
 
-        if (!array_key_exists($castType, $casters)) {
+        if (! array_key_exists($castType, $casters)) {
             throw new InvalidArgumentException($castType);
         }
 
         $casterClass = $casters[$castType];
 
-        if (!$options) {
+        if (! $options) {
             $options = $this->getCasterOptions($casterClass);
         }
 
