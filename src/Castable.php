@@ -150,7 +150,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function isBase64Castable($key)
+    protected function isBase64Castable($key): bool
     {
         return $this->hasCast($key, ['base64']);
     }
@@ -158,7 +158,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function isEncryptCastable($key)
+    protected function isEncryptCastable($key): bool
     {
         return $this->hasCast($key, ['encrypted']);
     }
@@ -166,7 +166,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function getCastType($key)
+    protected function getCastType($key): string
     {
         if (!array_key_exists($key, $this->getCasts())) {
             return;
@@ -184,7 +184,7 @@ trait Castable
      *
      * @return \BrianFaust\Castable\Casters\AbstractCaster
      */
-    private function getCaster($key, $castType = null, $options = [])
+    private function getCaster($key, $castType = null, $options = []): Casters\AbstractCaster
     {
         $casters = array_merge($this->casters, $this->customCasters);
 
