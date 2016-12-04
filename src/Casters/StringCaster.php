@@ -27,7 +27,7 @@ class StringCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function save($value)
+    public function save($value): string
     {
         return $value;
     }
@@ -35,7 +35,7 @@ class StringCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function load($value)
+    public function load($value): string
     {
         return (string) $value;
     }

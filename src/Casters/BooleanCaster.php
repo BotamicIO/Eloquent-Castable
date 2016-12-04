@@ -35,7 +35,7 @@ class BooleanCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function load($value)
+    public function load($value): bool
     {
         return (bool) $value;
     }

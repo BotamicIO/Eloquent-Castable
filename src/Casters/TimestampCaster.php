@@ -27,7 +27,7 @@ class TimestampCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function save($value)
+    public function save($value): int
     {
         return $value;
     }
@@ -35,7 +35,7 @@ class TimestampCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function load($value)
+    public function load($value): int
     {
         return (new DateTimeCaster($this->options))->save($value)->getTimestamp();
     }

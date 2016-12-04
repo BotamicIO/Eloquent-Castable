@@ -37,7 +37,7 @@ class CollectionCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function load($value)
+    public function load($value): Collection
     {
         return new Collection(json_decode($value));
     }

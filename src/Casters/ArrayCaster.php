@@ -27,7 +27,7 @@ class ArrayCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function save($value)
+    public function save($value): string
     {
         return json_encode($value);
     }

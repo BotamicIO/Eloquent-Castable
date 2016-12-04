@@ -35,7 +35,7 @@ class FloatCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function load($value)
+    public function load($value): float
     {
         return (float) $value;
     }

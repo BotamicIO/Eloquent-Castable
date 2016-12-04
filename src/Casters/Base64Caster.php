@@ -27,7 +27,7 @@ class Base64Caster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function save($value)
+    public function save($value): string
     {
         return base64_encode($value);
     }

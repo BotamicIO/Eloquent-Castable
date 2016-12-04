@@ -67,7 +67,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    public function setAttribute($key, $value)
+    public function setAttribute($key, $value): self
     {
         // First we will check for the presence of a mutator for the set operation
         // which simply lets the developers tweak the attribute as it is set on
@@ -96,7 +96,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    public function fromDateTime($value)
+    public function fromDateTime($value): string
     {
         return $this->getCaster(null, 'datetime', [
             'format' => $this->getDateFormat(),
@@ -106,7 +106,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function asDateTime($value)
+    protected function asDateTime($value): \DateTime
     {
         return $this->getCaster(null, 'datetime', [
             'format' => $this->getDateFormat(),
@@ -116,7 +116,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function asTimeStamp($value)
+    protected function asTimeStamp($value): int
     {
         return $this->getCaster(null, 'timestamp', [
             'format' => $this->getDateFormat(),
@@ -126,7 +126,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function asBase64($value)
+    protected function asBase64($value): string
     {
         return $this->getCaster(null, 'base64')->save($value);
     }
@@ -134,7 +134,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function asEncrypted($value)
+    protected function asEncrypted($value): string
     {
         return $this->getCaster(null, 'encrypted')->save($value);
     }
@@ -142,7 +142,7 @@ trait Castable
     /**
      * {@inheritdoc}
      */
-    protected function asJson($value)
+    protected function asJson($value): string
     {
         return $this->getCaster(null, 'json')->save($value);
     }
@@ -210,7 +210,7 @@ trait Castable
      *
      * @return array
      */
-    private function getCasterOptions(string $class)
+    private function getCasterOptions(string $class): array
     {
         $reflection = new \ReflectionClass($class);
         $optionsMethodName = 'get'.$reflection->getShortName().'Config';

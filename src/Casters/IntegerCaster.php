@@ -35,7 +35,7 @@ class IntegerCaster extends AbstractCaster
     /**
      * {@inheritdoc}
      */
-    public function load($value)
+    public function load($value): int
     {
         return (int) $value;
     }
