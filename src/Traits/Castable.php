@@ -1,8 +1,5 @@
 <?php
 
-
-declare(strict_types=1);
-
 /*
  * This file is part of Eloquent Castable.
  *
@@ -12,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Castable;
+namespace BrianFaust\Castable\Traits;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -25,23 +22,23 @@ trait Castable
      * @var array
      */
     protected $casters = [
-        'int'        => Casters\IntegerCaster::class,
-        'integer'    => Casters\IntegerCaster::class,
-        'real'       => Casters\FloatCaster::class,
-        'float'      => Casters\FloatCaster::class,
-        'double'     => Casters\FloatCaster::class,
-        'string'     => Casters\StringCaster::class,
-        'bool'       => Casters\BooleanCaster::class,
-        'boolean'    => Casters\BooleanCaster::class,
-        'object'     => Casters\ObjectCaster::class,
-        'array'      => Casters\ArrayCaster::class,
-        'json'       => Casters\ArrayCaster::class,
+        'int' => Casters\IntegerCaster::class,
+        'integer' => Casters\IntegerCaster::class,
+        'real' => Casters\FloatCaster::class,
+        'float' => Casters\FloatCaster::class,
+        'double' => Casters\FloatCaster::class,
+        'string' => Casters\StringCaster::class,
+        'bool' => Casters\BooleanCaster::class,
+        'boolean' => Casters\BooleanCaster::class,
+        'object' => Casters\ObjectCaster::class,
+        'array' => Casters\ArrayCaster::class,
+        'json' => Casters\ArrayCaster::class,
         'collection' => Casters\CollectionCaster::class,
-        'date'       => Casters\DateTimeCaster::class,
-        'datetime'   => Casters\DateTimeCaster::class,
-        'timestamp'  => Casters\TimestampCaster::class,
-        'encrypted'  => Casters\EncryptedCaster::class,
-        'base64'     => Casters\Base64Caster::class,
+        'date' => Casters\DateTimeCaster::class,
+        'datetime' => Casters\DateTimeCaster::class,
+        'timestamp' => Casters\TimestampCaster::class,
+        'encrypted' => Casters\EncryptedCaster::class,
+        'base64' => Casters\Base64Caster::class,
     ];
 
     /**
