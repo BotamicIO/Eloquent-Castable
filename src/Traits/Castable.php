@@ -11,6 +11,7 @@
 
 namespace BrianFaust\Castable\Traits;
 
+use BrianFaust\Castable\Casters;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
