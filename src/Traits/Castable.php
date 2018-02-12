@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace BrianFaust\Castable\Traits;
 
+use BrianFaust\Castable\Casters;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use BrianFaust\Castable\Casters;
 
 trait Castable
 {
@@ -160,7 +160,7 @@ trait Castable
      */
     protected function getCastType($key): string
     {
-        if (! array_key_exists($key, $this->getCasts())) {
+        if (!array_key_exists($key, $this->getCasts())) {
             return;
         }
 
@@ -180,17 +180,17 @@ trait Castable
     {
         $casters = array_merge($this->casters, $this->customCasters);
 
-        if (! $castType) {
+        if (!$castType) {
             $castType = $this->getCastType($key);
         }
 
-        if (! array_key_exists($castType, $casters)) {
+        if (!array_key_exists($castType, $casters)) {
             throw new InvalidArgumentException($castType);
         }
 
         $casterClass = $casters[$castType];
 
-        if (! $options) {
+        if (!$options) {
             $options = $this->getCasterOptions($casterClass);
         }
 
