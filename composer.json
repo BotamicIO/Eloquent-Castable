@@ -1,17 +1,24 @@
 {
     "name": "artisanry/eloquent-castable",
     "description": "More extensible Attribute Casting for Eloquent",
-    "keywords": ["laravel", "framework", "Eloquent-Castable", "Eloquent Castable"],
+    "keywords": [
+        "laravel",
+        "framework",
+        "Eloquent-Castable",
+        "Eloquent Castable"
+    ],
     "license": "MIT",
-    "authors": [{
-        "name": "Brian Faust",
-        "email": "hello@basecode.sh",
-        "homepage": "https://basecode.sh"
-    }],
+    "authors": [
+        {
+            "name": "Brian Faust",
+            "email": "hello@basecode.sh",
+            "homepage": "https://basecode.sh"
+        }
+    ],
     "require": {
-        "php": "^7.1",
-        "illuminate/database": "^5.6",
-        "illuminate/support": "^5.6"
+        "php": "^7.2",
+        "illuminate/database": "^5.8",
+        "illuminate/support": "^5.8"
     },
     "require-dev": {
         "graham-campbell/testbench": "^5.0",
