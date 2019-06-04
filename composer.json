@@ -1,12 +1,12 @@
 {
-    "name": "faustbrian/eloquent-castable",
+    "name": "artisanry/eloquent-castable",
     "description": "More extensible Attribute Casting for Eloquent",
-    "keywords": ["laravel", "framework", "Eloquent-Castable", "Eloquent Castable", "Brian Faust", "faustbrian"],
+    "keywords": ["laravel", "framework", "Eloquent-Castable", "Eloquent Castable"],
     "license": "MIT",
     "authors": [{
         "name": "Brian Faust",
-        "email": "hello@brianfaust.me",
-        "homepage": "https://brianfaust.me"
+        "email": "hello@basecode.sh",
+        "homepage": "https://basecode.sh"
     }],
     "require": {
         "php": "^7.1",
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BrianFaust\\Castable\\": "src"
+            "Artisanry\\Castable\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BrianFaust\\Tests\\Castable\\": "tests"
+            "Artisanry\\Tests\\Castable\\": "tests"
         }
     },
     "config": {
@@ -38,7 +38,7 @@
         },
         "laravel": {
             "providers": [
-                "BrianFaust\\Castable\\CastableServiceProvider"
+                "Artisanry\\Castable\\CastableServiceProvider"
             ]
         }
     },

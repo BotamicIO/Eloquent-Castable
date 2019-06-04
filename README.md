@@ -1,16 +1,16 @@
 # Eloquent Castable
 
-[![Build Status](https://img.shields.io/travis/faustbrian/Eloquent-Castable/master.svg?style=flat-square)](https://travis-ci.org/faustbrian/Eloquent-Castable)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/faustbrian/eloquent-castable.svg?style=flat-square)]()
-[![Latest Version](https://img.shields.io/github/release/faustbrian/Eloquent-Castable.svg?style=flat-square)](https://github.com/faustbrian/Eloquent-Castable/releases)
-[![License](https://img.shields.io/packagist/l/faustbrian/Eloquent-Castable.svg?style=flat-square)](https://packagist.org/packages/faustbrian/Eloquent-Castable)
+[![Build Status](https://img.shields.io/travis/artisanry/Eloquent-Castable/master.svg?style=flat-square)](https://travis-ci.org/artisanry/Eloquent-Castable)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/artisanry/eloquent-castable.svg?style=flat-square)]()
+[![Latest Version](https://img.shields.io/github/release/artisanry/Eloquent-Castable.svg?style=flat-square)](https://github.com/artisanry/Eloquent-Castable/releases)
+[![License](https://img.shields.io/packagist/l/artisanry/Eloquent-Castable.svg?style=flat-square)](https://packagist.org/packages/artisanry/Eloquent-Castable)
 
 ## Installation
 
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
 ``` bash
-$ composer require faustbrian/eloquent-castable
+$ composer require artisanry/eloquent-castable
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ $ composer require faustbrian/eloquent-castable
 
 class Product extends Eloquent
 {
-    use \BrianFaust\Castable\Castable;
+    use \Artisanry\Castable\Castable;
 
     /**
      * The attributes that should be cast to native types.
@@ -57,7 +57,7 @@ class Product extends Eloquent
 
 namespace App\Casters;
 
-use BrianFaust\Castable\Casters\AbstractCaster;
+use Artisanry\Castable\Casters\AbstractCaster;
 
 class MoneyCaster extends AbstractCaster
 {
@@ -87,7 +87,7 @@ $ phpunit
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to hello@brianfaust.me. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to hello@basecode.sh. All security vulnerabilities will be promptly addressed.
 
 ## Credits
 
@@ -96,4 +96,4 @@ If you discover a security vulnerability within this package, please send an e-m
 
 ## License
 
-[MIT](LICENSE) © [Brian Faust](https://brianfaust.me)
+[MIT](LICENSE) © [Brian Faust](https://basecode.sh)
